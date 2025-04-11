@@ -1,0 +1,25 @@
+{
+  "name": "@aladas-org/json-preprocessor",
+  "version": "0.0.2",
+  "description": "JSON preprocessor",
+  "scripts": {
+    "start_express": "node express_server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ALADAS-org/json-preprocessor.git"
+  },
+  "keywords": [
+    "JSON",
+    "preprocessor"
+  ],
+  "author": "Michel Kern and Daniel Rodet",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/ALADAS-org/json-preprocessor/issues"
+  },
+  "homepage": "https://github.com/ALADAS-org/json-preprocessor#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

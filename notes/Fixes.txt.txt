@@ -1,0 +1,3 @@
+to fix: DeprecationWarning: OutgoingMessage.prototype._headers is deprecated
+npm i browser-sync
+https://stackoverflow.com/questions/56697360/how-to-fix-node12388-dep0066-deprecationwarning-outgoingmessage-prototype
