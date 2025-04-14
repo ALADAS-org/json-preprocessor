@@ -3,8 +3,7 @@
 // =============================================================================================
 const run_demo = async () => {
 	console.log(">> ======== JSON preprocessor Demo (express server) ========");	
-	
-    console.log("----- Demo script (demo.js) -----");
+    console.log("----- Demo script ('demo.js') -----");
 	
 	let url = "http://127.0.0.1:8080/include_test.json";
 	console.log("url: " + url);  
@@ -13,13 +12,12 @@ const run_demo = async () => {
     let json_data = await fetch( url ).then(res => res.json());
 	
 	console.log("   ---- Description: include test ----");	
-	//json_data = JsonPP.GetAttribute(JsonPP.MAIN_JSON);
     console.log("   >> -------- BEFORE Preprocessing --------");	
 	console.log(JSON.stringify(json_data));
 	
-	let preprocessed_json_data = await JsonPP.Run(json_data);
+	let json_data_pp = await JsonPP.Run(json_data);
 	console.log("   >> -------- AFTER Preprocessing --------");
-	console.log(JSON.stringify(preprocessed_json_data));
+	console.log(JSON.stringify(json_data_pp));
 }; // run_demo()
 
 run_demo();
