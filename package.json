@@ -1,9 +1,9 @@
 {
   "name": "@aladas-org/json-preprocessor",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "JSON preprocessor",
   "scripts": {
-    "start_express": "node express_server.js"
+    "start": "node express_server.js"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,11 @@
 // ========================================================================================================
 // =====================================     json_preprocessor.js     =====================================
 // ========================================================================================================
+// Version 0.0.4
+// License: BSD-3-Clause - Copyright Michel Kern and Daniel Rodet
+// github: https://github.com/ALADAS-org/json-preprocessor
+// npm:    https://www.npmjs.com/package/@aladas-org/json-preprocessor
+// ========================================================================================================
 class JsonPP {
 	static OFFLINE_MODE = "OFFLINE_MODE";
 	
@@ -8,7 +13,7 @@ class JsonPP {
 	
 	static CONSTANTS = "@constants";
 	static SRC       = "#src";
-    static PRELOADED = "#preloaded";
+	static PRELOADED = "#preloaded";
 	static TYPE      = "#type";	
 	
 	static COLOR_PALETTE = "COLOR_PALETTE";	
