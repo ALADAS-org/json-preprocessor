@@ -1,0 +1,19 @@
+body {
+	padding: 0;
+	margin:  0;
+	background-color: #1b1b1b;
+}
+
+.Title {
+	font-family: Arial, Monospace;
+	font-size:   27px;
+	color:       #e6ddba;
+	text-align:  center;
+} /* 'Title' class */
+
+.SimpleText {
+	font-family: Arial, Monospace;
+	font-size:   17px;
+	color:       #e6ddba;
+	text-align:  center;
+} /* 'SimpleText' class */

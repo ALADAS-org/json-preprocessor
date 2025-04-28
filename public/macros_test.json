@@ -1,0 +1,20 @@
+{
+	"name": "Macros test",
+	"description": "Macros test",
+	"@include": { "src": "./includes/color_palette_basic.json", "type": "COLOR_PALETTE" },
+	"@macros": { "simple_macro_1(bgColor)":            { "#return": { "bgColor": "$bgColor" },
+	             "simple_macro_2(bgColor, thickness)": { "#return": { "bgColor": "$bgColor", "thickness": "$thickness" },
+                 "if_demo(bgColor, flag)": 
+					{ "#if(flag)":   { "bgColor": "$bgColor", "flag": 1 },
+					  "#else":       { "bgColor": "$bgColor", "flag": 0 },
+                    },					
+	           },
+	"Shapes": {	
+		"0": [ "$simple_macro_1($red)" ],
+		"1": [ "$if_demo($green, true)" ],
+		"2": [ "$if_demo($green, false)" ],
+		"3": [ { "bgColor": "$yellow" } ],
+		"4": [ { "bgColor": "$cyan" }  ],
+		"5": [ { "bgColor": "$magenta" }  ]
+	}
+}

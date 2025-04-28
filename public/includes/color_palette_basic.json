@@ -1,5 +1,5 @@
 {
-	"@type": "COLOR_PALETTE",  
+	"type": "COLOR_PALETTE",  
 	"@constants": [
 		{ "name": "red",     "value": "#ff0000" },
 		{ "name": "green",   "value": "#00ff00" },

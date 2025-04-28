@@ -12,6 +12,8 @@ class JsonPP {
 	static INCLUDE_DIRECTIVE = "@include";
 	
 	static CONSTANTS = "@constants";
+	static MACROS    = "@macros";
+	
 	static SRC       = "#src";
 	static PRELOADED = "#preloaded";
 	static TYPE      = "#type";	
@@ -105,6 +107,10 @@ class JsonPP {
 				let constants_data = include_json_data[JsonPP.CONSTANTS];
 				// console.log( "  loaded constants: " + JSON.stringify(constants_data));
 				JsonPP.ReadConstants( constants_data );
+			}
+			else if ( key == JsonPP.MACROS ) {
+				let macros_data = json_data_in[key];
+				console.log"macros: " + JSON.stringify(macros_data));
 			}
 			else { 
 				// console.log( "  key NOT include: " + key + " " + JSON.stringify(json_data));

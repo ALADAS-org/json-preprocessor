@@ -6,20 +6,26 @@
 // github: https://github.com/ALADAS-org/json-preprocessor
 // npm:    https://www.npmjs.com/package/@aladas-org/json-preprocessor
 // ========================================================================================================
+const INCLUDE    = '@include';	
+const CONSTANTS  = '@constants';
+const MACROS     = '@macros';	
+const DIRECTIVES = [ INCLUDE, CONSTANTS, MACROS  ];
+
+const NAME      = 'name';
+const VALUE     = 'value';
+const SRC       = 'src';
+const PRELOADED = 'preloaded';
+const TYPE      = 'type';	
+const KEYS = [ NAME, VALUE, SRC, TYPE, PRELOADED  ];
+
+const COLOR_PALETTE = 'COLOR_PALETTE';	
+const TYPES = [ COLOR_PALETTE ];
+	
 class JsonPP {
-	static OFFLINE_MODE = "OFFLINE_MODE";
-	
-	static INCLUDE_DIRECTIVE = "@include";
-	
-	static CONSTANTS = "@constants";
-	static SRC       = "#src";
-	static PRELOADED = "#preloaded";
-	static TYPE      = "#type";	
-	
-	static COLOR_PALETTE = "COLOR_PALETTE";	
+	static OFFLINE_MODE  = "OFFLINE_MODE";	
 	static MAIN_JSON     = "MAIN_JSON";
 	
-	static Attributes = { "#preloaded": false };
+	static Attributes = { [PRELOADED]: false };
 	static ITEM_NAME = "ITEM_NAME";
 	
 	static JSON_DATA_ITEMS = {};
@@ -81,14 +87,14 @@ class JsonPP {
 			let key = keys[i];
 			let json_data = json_data_in[key];
 			// console.log( "  key[" + i + "]: " + "'" + key + "'");
-			if ( key == JsonPP.INCLUDE_DIRECTIVE ) {
-				// console.log( "  >> INCLUDE FOUND");
+			if ( key == INCLUDE ) {
+				console.log( "  >> INCLUDE FOUND");
 				
-				let preloaded_include = json_data[JsonPP.PRELOADED];
+				let preloaded_include = json_data[PRELOADED];
 				if (preloaded_include == undefined) preloaded_include = false;
 				// console.log( "  preloaded_include: " + preloaded_include);				
 				
-				let include_type = json_data[JsonPP.TYPE];
+				let include_type = json_data[TYPE];
 				// console.log( "  include_type: " + include_type);
 				
 				let include_json_data = {};
@@ -102,9 +108,13 @@ class JsonPP {
 
 				// console.log( "  loaded include_json_data: " + JSON.stringify(include_json_data));
 
-				let constants_data = include_json_data[JsonPP.CONSTANTS];
+				let constants_data = include_json_data[CONSTANTS];
 				// console.log( "  loaded constants: " + JSON.stringify(constants_data));
 				JsonPP.ReadConstants( constants_data );
+			}
+			else if ( key == MACROS ) {
+				let macros_data = json_data_in[key];
+				console.log("macros: " + JSON.stringify(macros_data));
 			}
 			else { 
 				// console.log( "  key NOT include: " + key + " " + JSON.stringify(json_data));
@@ -163,34 +173,37 @@ class JsonPP {
 
         let keys = Object.keys( json_data_in );
 		let values = Object.values( json_data_in );
-		let index_of_src = keys.indexOf("src");
-		// console.log("  indexOf('src'): " + index_of_src);
+		let index_of_src = keys.indexOf(SRC);
+		console.log("  indexOf('" + SRC + "'): " + index_of_src);
 		// console.log("  values: " + JSON.stringify(values));
 		if ( index_of_src != -1 ) {
 			let key = keys[index_of_src];
-			// console.log("  key: " + key);
+			console.log("  key: " + key);
 			let include_url = values[index_of_src]; 	
 			//let url = Object.values( json_data_in )[index_of_src];		l
 			console.log( " url: " + include_url );
 			if ( include_url.endsWith(".json") ) {
 				json_data_out = await JsonPP.Load(include_url);
+				console.log( " json_data_out: " + JSON.stringify(json_data_out) );
 			}
 		}
 		return json_data_out;
     } // JsonPP.ProcessInclude()
 	
-	static ReadConstants( json_data ) {
-		console.log("> JsonPP.ReadConstants");
-		// console.log("   ReadConstants json_data isArray: " + Array.isArray(json_data));
-		// console.log("   ReadConstants json_data: " + JSON.stringify(json_data));
+	static ReadConstants( json_data_in ) {
+		console.log("> JsonPP.ReadConstants json_data_in: " + JSON.stringify(json_data_in));
+		
+		//let json_data_constants = json_data[CONSTANTS]
+		
+		console.log("   ReadConstants json_data_constants isArray: " + Array.isArray(json_data_in));		
 		
 		// JsonPP.PrintConstants();
 
-		if ( Array.isArray(json_data) ) {
-			for (let i=0; i < json_data.length; i++) {
-				let name  = json_data[i]['name'];
+		if ( Array.isArray(json_data_in) ) {
+			for (let i=0; i < json_data_in.length; i++) {
+				let name  = json_data_in[i]['name'];
 				if (! name.startsWith('$')) name = '$' + name;
-				let value = json_data[i]['value'];
+				let value = json_data_in[i]['value'];
 				JsonPP.Constants[name] = value;
 				// JsonPP.PrintConstants();
 			}
